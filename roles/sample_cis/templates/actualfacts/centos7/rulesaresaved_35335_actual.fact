@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo ip6tables -L | egrep ".*ACCEPT.*" | paste -sd "," -)
+if [ $(sudo ip6tables -L | egrep ".*ACCEPT.*" | wc -l) -eq 0 ]; then
+   echo "{ \"rulesaresaved_35335_actual\" : \"\"}"
+else
+   echo "{ \"rulesaresaved_35335_actual\" : \"$cmd\"}"
+   exit 0
+fi
+

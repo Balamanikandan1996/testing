@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.14 - Ensure only strong MAC algorithms are used 
+
+if [ $(sudo grep "MACs.*hmac-.*"  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"5.2.14 - Ensure only strong MAC algorithms are used \" : \"FAILED\"}"
+else
+   echo "{ \"sshmacalgorithm_5214_audit\" : \"PASSED\"}"
+   exit 1
+fi

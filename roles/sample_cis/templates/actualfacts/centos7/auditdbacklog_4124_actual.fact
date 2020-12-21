@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(grep "^\s*linux" /boot/grub2/grub.cfg | grep -v "audit_backlog_limit=" | wc -l) -ne 0 ];then
+   echo "{ \"auditdbacklog_4124_actual\" : \"\" }"
+else
+   echo "{ \"auditdbacklog_4124_actual\" : \"GRUB_CMDLINE_LINUX="audit_backlog_limit=8192"\" }"
+fi

@@ -1,0 +1,13 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 5.4.4 Ensure default user shell timeout is configured 
+
+if [ $(grep "^TMOUT.*600" /etc/bashrc | wc -l) -eq 0 ] || [ $(grep "^TMOUT.*600" /etc/profile | wc -l) -eq 0 ]; then
+   echo "{ \"5.4.4 Ensure default user shell timeout is configured \" : \"FAILED\"}"
+else
+   echo "{ \"usershelltimeout_544_audit\" : \"PASSED\"}"
+   exit 1
+fi
+
+

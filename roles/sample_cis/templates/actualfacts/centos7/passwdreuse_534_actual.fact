@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(grep "remember=5" /etc/pam.d/password-auth)
+b=$(grep "remember=5" /etc/pam.d/system-auth)
+cmd="${a}","${b}"
+if [ $(grep "remember=5" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "remember=5" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdreuse_534_actual\" : \"\" }"
+else
+   echo "{ \"passwdreuse_534_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

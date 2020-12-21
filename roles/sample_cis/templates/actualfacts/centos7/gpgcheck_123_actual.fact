@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/yum.conf | grep 'gpgcheck=1' | paste -sd "," -)
+if [ $(grep "^gpgcheck" /etc/yum.conf /etc/yum.repos.d/* | grep "1" | wc -l) -eq 0 ] ; then
+   echo "{ \"gpgcheck_123_actual\" : \"\" }"
+else
+   echo "{ \"gpgcheck_123_actual\" : \"${cmd}\" }"
+   exit 1
+fi

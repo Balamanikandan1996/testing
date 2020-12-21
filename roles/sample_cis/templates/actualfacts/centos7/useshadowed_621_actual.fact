@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $(awk -F: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}' /etc/passwd | wc -l) -eq 0 ]; then
+   echo "{ \"useshadowed_621_actual\" : \"Accounts in /etc/passwd use shadowed passwords\"}"
+else
+echo "{ \"useshadowed_621_actual\" : \"\"}"
+   
+   exit 0
+fi
+

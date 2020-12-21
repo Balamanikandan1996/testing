@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(cat /usr/lib/systemd/system/rescue.service | grep '^ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"' | tr '"' "'")
+b=$(cat /usr/lib/systemd/system/emergency.service | grep '^ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"' | tr '"' "'")
+cmd="${a}","${b}"
+if [ $(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+   echo "{ \"singleusermode_153_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_153_actual\" : \"${cmd}\" }"
+fi

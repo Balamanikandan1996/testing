@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.3.5 - Ensure ip6tables rules are saved
+
+if [ $(sudo ip6tables -L | egrep ".*ACCEPT.*" | wc -l) -eq 0 ]; then
+   echo "{ \"3.5.3.3.5 - Ensure ip6tables rules are saved\" : \"FAILED\"}"
+else
+   echo "{ \"rulesaresaved_35335_audit\" : \"PASSED\"}"
+   exit 0
+fi
+

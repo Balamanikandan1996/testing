@@ -1,0 +1,16 @@
+#!/bin/bash
+a=$(sudo egrep "unlinkat" /etc/audit/rules.d/*.rules 2> /dev/null | paste -sd "," -) 
+b=$(sudo auditctl -l | egrep "unlinkat" | paste -sd "," -)
+cmd="${a}","${b}"
+cmd1="${b}"
+if [ $(sudo egrep "unlinkat" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | egrep "unlinkat" | wc -l) -eq 0 ]; then
+   echo "{ \"filedeletion_4113_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{ \"filedeletion_4113_actual\": \"${cmd}\" }"
+     else
+        echo "{ \"filedeletion_4113_actual\": \"${cmd1}\" }"
+  fi
+exit 1
+fi
+

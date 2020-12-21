@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.16 - Ensure SSH Idle Timeout Interval is configured 
+
+if [ $(sudo grep "^ClientAliveInterval.*[0-300]" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(sudo grep "^ClientAliveCountMax.*[0-9]" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"5.2.16 - Ensure SSH Idle Timeout Interval is configured\":\"FAILED\"}"
+else
+   echo "{\"sshidletimeout_5216_audit\":\"PASSED\"}"
+   exit 1
+fi
+

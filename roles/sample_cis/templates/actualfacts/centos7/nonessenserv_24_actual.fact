@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(lsof -i -P -n | grep -v "(ESTABLISHED)" | grep -v "root" | awk '{ print $1 }' | sed '1d' | wc -l) -ne 0 ]; then
+   echo "{ \"nonessenserv_24_actual\" : \"\" }"
+else
+   echo "{ \"nonessenserv_24_actual\" : \"nonessential services are removed or masked\" }"
+fi
+

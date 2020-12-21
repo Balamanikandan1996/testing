@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.11 - Ensure nftables rules are permanent (Scored)
+
+if [ $(grep "^include*" /etc/sysconfig/nftables.conf | wc -l) -eq 0 ]; then
+    echo "{\"3.5.2.11 - Ensure default deny firewall policy\":\"FAILED\"}"
+else
+        echo "{\"nftablesrules_35211_audit\":\"PASSED\"}"
+fi

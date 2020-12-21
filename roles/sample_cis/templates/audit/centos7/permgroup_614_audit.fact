@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.4 - Ensure permissions on /etc/group are configured
+
+if [ "$(stat /etc/group | grep 0644 | grep ".*Uid:.*0/.*root" | grep ".*Gid.*0/.*root" | wc -l)" -eq 0 ]; then
+
+   echo "{ \"6.1.4 - Ensure permissions on /etc/group are configured\" : \"FAILED\"}"
+else
+   echo "{ \"permgroup_614_audit\" : \"PASSED\"}"
+   exit 0
+fi
+
+
