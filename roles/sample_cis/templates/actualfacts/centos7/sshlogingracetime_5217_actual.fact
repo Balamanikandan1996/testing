@@ -1,9 +1,0 @@
-#!/bin/bash
-cmd=$(cat /etc/ssh/sshd_config | grep "LoginGraceTime 60")
-if [ $(grep "^LoginGraceTime.*60" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
-   echo "{ \"sshlogingracetime_5217_actual\" : \"\" }"
-else
-   echo "{ \"sshlogingracetime_5217_actual\" : \"${cmd}\" }"
-   exit 1
-fi
-

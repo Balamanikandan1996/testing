@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cmd=$(rpm -q nftables)
-
-if [ $(rpm -q nftables | grep 'nftables-[0-9]\+' | wc -l) -ne 0 ]; then
-        echo "{ \"nftablesstop_3513_actual\" : \"\" }"
-else
-        echo "{ \"nftablesstop_3513_actual\" : \"$cmd\" }"
-fi

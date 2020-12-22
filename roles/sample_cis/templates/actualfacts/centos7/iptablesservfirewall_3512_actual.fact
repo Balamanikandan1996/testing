@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cmd=$(rpm -q iptables-services)
-
-if [ $(rpm -q iptables-services | grep 'iptables-services-[0-9]\+' | wc -l) -ne 0 ]; then
-        echo "{ \"iptablesservfirewall_3512_actual\" : \"\" }"
-else
-        echo "{ \"iptablesservfirewall_3512_actual\" : \"$cmd\" }"
-fi

@@ -1,9 +1,0 @@
-#!/bin/bash
-cmd=$(cat /etc/ssh/sshd_config | grep "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256")
-if [ $(grep "MACs.*hmac-.*"  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
-   echo "{ \"sshmacalgorithm_5214_actual\" : \"\" }"
-else
-   echo "{ \"sshmacalgorithm_5214_actual\" : \"${cmd}\" }"
-   exit 1
-fi
-

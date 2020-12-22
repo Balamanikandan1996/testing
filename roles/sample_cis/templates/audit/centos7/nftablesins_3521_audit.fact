@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# 3.5.2.1 Ensure nftables is installed (Scored)
-
-if [ $(rpm -qa nftables | grep "nftables-[0-9]" | wc -l) -eq 0 ]; then
-      echo "{ \"3.5.2.1 - nftables is not installed\" : \"FAILED\"}"
-else
-      echo "{ \"nftablesins_3521_audit\" : \"PASSED\"}"
-fi

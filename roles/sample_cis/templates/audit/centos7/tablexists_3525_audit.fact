@@ -1,9 +1,0 @@
-#!/bin/bash
-# ** AUTO GENERATED **
-#3.5.2.5 - Ensure a table exists
-
-if [ $(nft list tables | grep "filter" |wc -l) -eq 0 ]; then
-echo "{ \"3.5.2.5 - Ensure a table exists\" : \"FAILED\" }"
-else
-      echo "{ \"tablexists_3525_audit\" : \"PASSED\" }"
-fi

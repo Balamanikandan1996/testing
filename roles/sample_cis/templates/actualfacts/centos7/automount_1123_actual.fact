@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "$(systemctl is-enabled autofs  2> /dev/null 2> /dev/null | grep "enabled")" == "" ]; then
-   echo "{ \"automount_1123_actual\" : \"Failed to get unit file state for autofs.service\" }"
-else
-   echo "{ \"automount_1123_actual\" : \"\" }"
-   exit 1
-fi

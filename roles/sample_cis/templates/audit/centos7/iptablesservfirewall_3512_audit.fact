@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#   3.5.1.2 - Ensure iptables-services package is not installed (Scored)
-
-if [ $(rpm -q iptables-services | grep 'iptables-services-[0-9]\+' | wc -l) -ne 0 ]; then
-        echo "{ \"3.5.1.2 - iptables services package is installed\" : \"FAILED\" }"
-else
-        echo "{ \"iptablesservfirewall_3512_audit\" : \"PASSED\" }"
-fi

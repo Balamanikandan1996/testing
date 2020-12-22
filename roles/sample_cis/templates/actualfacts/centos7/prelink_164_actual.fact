@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "$(rpm -qa prelink | grep "prelink-[0-9]\+" | wc -l)" -gt 0 ]; then
-   echo "{ \"prelink_164_actual\" : \"\" }"
-else
-   echo "{ \"prelink_164_actual\" : \"No Match for argument: prelink\" }"
-  
-fi

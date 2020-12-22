@@ -1,9 +1,0 @@
-#!/bin/bash
-if [ $(iptables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ] || [ $(ip6tables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ]; then
-     save=$(iptables-save >> /tmp/iptablesflush)
-     failfact=$(cat /tmp/iptablesflush | paste -sd ";")
-   echo "{ \"iptablesflush_3524_actual\" : \"failed $failfact\" }"
-    rm -rf /tmp/iptablesflush
-else
-   echo "{ \"iptablesflush_3524_actual\" : \"iptables are flushed\" }"
-fi

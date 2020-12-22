@@ -1,8 +1,0 @@
-#!/bin/bash
-cmd=$(rpm -qa iptables | grep "iptables-[0-9]\+")
-if [ $(rpm -qa iptables | grep "iptables-[0-9]\+.*" | wc -l) -eq 0 ]; then
-   echo "{ \"iptables_35311_actual\" : \"\" }"
-else
-   echo "{ \"iptables_35311_actual\" : \"${cmd}\" }"
-   exit 1
-fi

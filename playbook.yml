@@ -1,8 +1,0 @@
----
-- hosts: all
-  become: yes
-  become_method: sudo
-  gather_facts: true
-  roles:
-    - role: sample_cis
-      when: inventory_hostname != 'localhost'

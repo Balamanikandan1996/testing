@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#   3.5.1.1 - Ensure a Firewall package is installed (Scored)
-
-if [ $(rpm -qa firewalld | grep 'firewalld-[0-9]\+' | wc -l) -eq 0 ] || [ $(rpm -qa iptables | grep 'iptables-[0-9]\+' | wc -l) -eq 0 ]; then
-        echo "{ \"3.5.1.1 Firewall package is not installed\"  : \"FAILED\" }"
-else
-        echo "{ \"firewallpack_3511_audit\"  : \"PASSED\" }"
-fi

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# 3.5.2.2 - Ensure firewalld is not installed or stopped and masked (Scored)
-
-if [ $(sudo systemctl is-enabled firewalld | grep 'masked' | wc -l) -eq 0 ]; then
-      echo "{ \"3.5.2.2 - firewalld is installed or not stopped and masked\" : \"FAILED\"}"
-else
-      echo "{ \"firewallno_3522_audit\" : \"PASSED\"}"
-fi
