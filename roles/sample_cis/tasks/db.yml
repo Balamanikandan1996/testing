@@ -1,35 +1,11 @@
 ---
 ####DB####
-  - name: creating a directory in pgsql
-    file:
-      path: /var/lib/pgsql/cisfacts
-      state: directory
-    ignore_errors: yes
-    delegate_to: localhost
-
-  - name: saving all facts to host specific filenames
-    copy:
-      content: "{{ ansible_local | to_json }}\n"
-      dest: "/var/lib/pgsql/cisfacts/{{ansible_hostname}}.json"
-      mode: 0666
-    failed_when: no
-#    when: inventory_hostname != play_hosts[0]
-    delegate_to: localhost
-
-  - name: adding hostname to factfiles
-    shell: sed -i -e "s/^/{{ansible_nodename}}\|{{ansible_default_ipv4.address}}|/" /var/lib/pgsql/cisfacts/{{ansible_hostname}}.json
-#    when: inventory_hostname != play_hosts[0]
-    delegate_to: localhost
-
-  - pause: seconds=20
-
   - name: creating database
     postgresql_db:
       name: cis
     become_user: postgres
-#    when: inventory_hostname == play_hosts[0]
     run_once: true
-    delegate_to: localhost
+    when: inventory_hostname in (groups['localhost'] | default([]))
 
   - name: creating db table and columns
     postgresql_table:
@@ -40,11 +16,11 @@
       - created_at TIMESTAMP DEFAULT NOW()
       - hostname VARCHAR(100) NOT NULL
       - ipaddress VARCHAR(100) NOT NULL
-      - values JSON
+      - tag_name VARCHAR(100) NOT NULL
+      - values VARCHAR(70) NOT NULL
     become_user: postgres
- #   when: inventory_hostname == play_hosts[0]
+    when: inventory_hostname in (groups['localhost'] | default([]))
     run_once: true
-    delegate_to: localhost
 
   - name: copying facts into table
     postgresql_query:

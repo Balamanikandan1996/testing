@@ -4,7 +4,7 @@
 # 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled (Scored)
 
 if [ $(sudo modprobe -n -v cramfs 2>/dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep cramfs | wc -l) -ne 0 ]; then
-   echo "{ \"1.1.1.1 - Mounting of cramfs filesystems is not Disabled\" : \"FAILED\" }"
+   echo "{ \"cramfs_1111_audit\" : \"FAILED\" }"
 else
    echo "{ \"cramfs_1111_audit\" : \"PASSED\" }"
 

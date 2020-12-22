@@ -1,10 +1,4 @@
 ---
-# tasks file for sample_cis
-- include: backup.yml
-  tags:
-    - centos
-    - centos7
-
 ####AUDIT####
 - include: audit.yml
   tags:

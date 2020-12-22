@@ -1,27 +1,15 @@
 ---
 ####AUDIT####
-  - name: RedHat - dependency package [libselinux-python]
-    yum: name=libselinux-python state=present
-    failed_when: no
-    when:
-      - ansible_os_family == "RedHat"
+  - name: Ensure custom fact directory exists
+    file:
+      path: "{{ item }}"
+      recurse: yes
+      state: directory
+    with_items:
+      - /etc/ansible
+      - /etc/ansible/facts.d
     tags:
       - always
-
-  - name: "Ensure custom fact directory exists"
-    shell: "find /etc/ -name 'ansible'"
-    register: find
-    tags:
-      - factcustomdir
-
-  - name: "Ensure custom fact directory exists"
-    file:
-      path=/etc/ansible/facts.d
-      recurse=yes
-      state=directory
-    when: find.stdout == ""
-    tags:
-      - factcustomdir
 
   - name: "Transfering custom fact files for centos7"
     template:
